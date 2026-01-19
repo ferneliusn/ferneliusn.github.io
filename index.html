@@ -90,13 +90,63 @@
                 max-width: 100%;
             }
         }
+
+
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a; /* Matches your body background */
+        }
+
+        /* The "Red" Offset */
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        /* The "Blue" Offset */
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            animation: glitch-anim2 1s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            20% { clip: rect(62px, 9999px, 42px, 0); }
+            40% { clip: rect(16px, 9999px, 78px, 0); }
+            60% { clip: rect(1px, 9999px, 13px, 0); }
+            80% { clip: rect(85px, 9999px, 99px, 0); }
+            100% { clip: rect(53px, 9999px, 26px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(10px, 9999px, 30px, 0); }
+            40% { clip: rect(45px, 9999px, 50px, 0); }
+            60% { clip: rect(25px, 9999px, 85px, 0); }
+            80% { clip: rect(55px, 9999px, 20px, 0); }
+            100% { clip: rect(80px, 9999px, 90px, 0); }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="main-content">
-            <h1>hi, i'm talia!</h1>
+            <h1 class="glitch" data-text="hi, i'm talia!">hi, i'm talia!</h1>
             <h2>i build cool shit. </h2>
             <p>particular interests are reef aquariums, nix, defi, the german language, cybersecurity, and cooking. </p>
             <a href="mailto:nataliafernelius@gmail.com">i am a rare engineer who likes talking to people. reach me here.</a>
@@ -113,6 +163,5 @@
             <p class="caption">this is me. so professional!</p>
         </div>
     </div>
-
 </body>
 </html>
